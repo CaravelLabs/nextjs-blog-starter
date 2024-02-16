@@ -26,44 +26,70 @@ A simple Todo App built on [Next.js](https://nextjs.org/)
 
 ### Folder Structure
 ```bash
-.
-├── components
-│   ├── alert.tsx
-│   ├── avatar.tsx
-│   ├── Todo.js
-│   └── Todos.js
-├── pages
-│   ├── _app.js
-│   ├── index.js
-│   └── todos
-│       └── [id].js
-├── public
-│   └── favicon.ico
-├── .env
-├── .gitignore
-├── README.md
-├── package-lock.json
-├── package.json
-└── server.js
+📦src
+ ┣ 📂app
+ ┃ ┣ 📂posts
+ ┃ ┃ ┗ 📂[slug]
+ ┃ ┃ ┃ ┗ 📜page.tsx
+ ┃ ┣ 📂_components
+ ┃ ┃ ┣ 📜alert.tsx
+ ┃ ┃ ┣ 📜avatar.tsx
+ ┃ ┃ ┣ 📜container.tsx
+ ┃ ┃ ┣ 📜cover-image.tsx
+ ┃ ┃ ┣ 📜date-formatter.tsx
+ ┃ ┃ ┣ 📜footer.tsx
+ ┃ ┃ ┣ 📜header.tsx
+ ┃ ┃ ┣ 📜hero-post.tsx
+ ┃ ┃ ┣ 📜intro.tsx
+ ┃ ┃ ┣ 📜markdown-styles.module.css
+ ┃ ┃ ┣ 📜more-stories.tsx
+ ┃ ┃ ┣ 📜post-body.tsx
+ ┃ ┃ ┣ 📜post-header.tsx
+ ┃ ┃ ┣ 📜post-preview.tsx
+ ┃ ┃ ┣ 📜post-title.tsx
+ ┃ ┃ ┗ 📜section-separator.tsx
+ ┃ ┣ 📜globals.css
+ ┃ ┣ 📜layout.tsx
+ ┃ ┗ 📜page.tsx
+ ┣ 📂interfaces
+ ┃ ┣ 📜author.ts
+ ┃ ┗ 📜post.ts
+ ┣ 📂lib
+ ┃ ┣ 📜api.ts
+ ┃ ┣ 📜constants.ts
+ ┃ ┗ 📜markdownToHtml.ts
 ```
 
 <br />
 
-### High Level Technical Architecture
+### Low Level Technical Architecture
 
-![High Level Technical Design](https://ambitustemplateassets.blob.core.windows.net/assets/cosmos-todo.png?sp=r&st=2024-02-15T02:27:22Z&se=2029-12-31T10:27:22Z&sv=2022-11-02&sr=b&sig=LvRyc9VpN1P3p60Y2R8LPTGtRzW%2F8K9D0L9ZL%2B4kmBc%3D)
+- Next.js Framework: Next.js is used as the primary framework for building the blog template app. It provides features like server-side rendering, routing, and code splitting out of the box.
+
+- Styling: The UI of the blog template app is built using Tailwind CSS. These components are reusable and modular, allowing for a structured and maintainable codebase.
+
+- Pages and Routing: Next.js uses a file-based routing system where each React component in the app directory corresponds to a route in the application. For example, `app/page.tsx` represents the home page of the blog, `app/posts/[slug]/page.tsx` represents individual blog posts, etc.
+
+- Markdown or Contentful Integration: Blog content can be stored as Markdown files or managed through a headless CMS like Contentful but in this case we are storing it in a directory `web/_posts`. Markdown files can be parsed and rendered dynamically using libraries like remark.
+
+- Data Fetching: Data fetching for blog posts, categories, tags, etc., can be done using various methods:
+
+    - Static Site Generation (SSG): Pre-rendering blog posts at build time using getStaticProps and getStaticPaths.
+    - Server-Side Rendering (SSR): Fetching dynamic data on the server-side using getServerSideProps.
+    - Client-Side Data Fetching: Fetching data on the client-side using useEffect or third-party libraries like SWR or react-query.
+
+
 
 <br />
 
 ### Cost to host in Azure
 
-Official estimate from Azure Pricing Calculator - [Azure Pricing Calculator](https://azure.com/e/d2243ee749a44397a3483f2569578564)
+Official estimate from Azure Pricing Calculator - [Azure Pricing Calculator](https://azure.com/e/bbec79326663486ebfb3c76d30b1a9fc)
 
 | Service Category | Service Type | Description | Estimated Monthly Cost | Estimated Upfront Cost |
 | :---: | :---: | :---: | :---: | :---: |
 | Compute | Azure App Service | *Basic Tier; 1 B1 (1 Core(s), 1.75 GB RAM, 10 GB Storage) x 730 Hours; Linux OS; 0 SNI SSL Connections; 0 IP SSL Connections; 0 Custom Domains; 0 Standard SLL Certificates; 0 Wildcard SSL Certificates* | $12.41 | $0 |
-| Database | Azure Cosmos DB | *Azure Cosmos DB for NoSQL (formerly Core), Serverless, Always-free quantity disabled, Single Region Write (Single-Master) - East US (Write Region), 4 million RUs, 5 GB transactional storage, 2 copies of periodic backup storage, Dedicated Gateway not enabled* | $2.25 | $0 |
 | Developer Tools | Azure DevOps | *Basic Plan; 5 User(s)* | $0 | $0 |
-| Total | | | $14.66 | $0 |
+| Total | | | $12.41 | $0 |
 
 ***Disclaimer: The above cost is an estimate and may vary based on the actual usage. Caravel Labs or Microsoft is not responsible for additional costs incurred.***
