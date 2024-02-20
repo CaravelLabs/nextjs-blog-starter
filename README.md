@@ -1,6 +1,6 @@
 # Next.js Blog Template
 
-A simple Todo App built on [Next.js](https://nextjs.org/)
+A simple Blog App built on [Next.js](https://nextjs.org/)
 ## Environment Setup Instructions
 
 
